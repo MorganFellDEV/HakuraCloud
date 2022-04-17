@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+from os import getenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'host': 'CHANGE ME',
-            'user': 'CHANGE ME',
-            'password': 'CHANGE ME',
-            'database': 'CHANGE ME',
+            'host': getenv("HAKURA_SERVER_URL"),
+            'user': getenv("HAKURA_SERVER_USERNAME"),
+            'password': getenv("HAKURA_SERVER_PASSWORD"),
+            'database': 'hakura',
             'init_command': 'SET default_storage_engine=INNODB',
         },
     }

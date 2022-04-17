@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from hakura.views import welcome,userdetails,allusers,createuser
 
 urlpatterns = [
+    path('',welcome),
     path('admin/', admin.site.urls),
+    path('profiles/<id>', userdetails),
+    path('allusers',allusers),
+    path('createuser',createuser, name='createuser')
 ]
