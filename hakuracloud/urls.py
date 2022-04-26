@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hakura.views import welcome,userdetails,allusers,createuser
+from hakura.views import welcome,userdetails,allusers,createuser,createpost
 
 urlpatterns = [
     path('',welcome),
     path('admin/', admin.site.urls),
     path('profiles/<id>', userdetails),
     path('allusers',allusers),
-    path('createuser',createuser, name='createuser')
+    path('createuser',createuser, name='createuser'),
+    path('createpost',createpost, name='createpost')
 ]

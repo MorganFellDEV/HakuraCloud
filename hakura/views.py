@@ -6,7 +6,23 @@ from django.http import HttpResponse
 from hakura.models import User, Post
 
 def welcome(request):
-    return HttpResponse("Welcome to Hakura Cloud.")
+    posts = Post.objects.all()
+    post = {'posts': posts}
+    return render(request, "hakura/index.html", post)
+
+createpostform = modelform_factory(Post, exclude=[])
+def createpost(request):
+    if request.method == "POST":
+        form = createpostform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(welcome)
+        else:
+            return HttpResponse ("Form not valid.")
+        #form submitted, to be processed
+    else:
+        form = createpostform()
+        return render(request, "hakura/createpost.html", {'form':form})
 
 def userdetails(request,id):
     user = get_object_or_404(User,pk=id)
