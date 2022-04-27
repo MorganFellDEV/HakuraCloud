@@ -1,12 +1,17 @@
 from django import forms
+from django.forms import ModelForm
+
 from hakura.models import User, Post
 
+import django.contrib.auth.models
 
-class NewPostForm(forms.Form):
-    userID = forms.UUIDField()
-    content = forms.CharField(max_length=128)
+class NewPostForm(ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('UserID',)
 
-    def save(self):
-        data = self.cleaned_data
-        post = Post(UserID=User.objects.get(id=data['userID']),PostContent=data['content'])
-        post.save()
+
+    # def save(self):
+    #     data = self.cleaned_data
+    #     post = Post(PostContent=data['content'])
+    #     post.save()
