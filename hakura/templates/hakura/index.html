@@ -16,6 +16,7 @@
 
     <h1>All Posts</h1>
     <a href={% url 'createpost' %}>Create Post</a>
+    <a href={% url 'createuser' %}>Create User</a>
     <table>
     <th>Post ID</th>
     <th>Post Username</th>
@@ -28,6 +29,24 @@
         <td>{{ post.UserID.UserDisplayName}}</td>
         <td>{{ post.PostContent }}</td>
         <td><a href="/profiles/{{ post.UserID.id }}">User Details</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <h1>All Users</h1>
+    <table>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Display Name</th>
+    <th>Bio</th>
+    <th></th>
+    {% for user in users %}
+        <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.UserName}}</td>
+        <td>{{ user.UserDisplayName }}</td>
+        <td>{{ user.UserBio }}</td>
+        <td><a href="/profiles/{{ user.id }}">Details</a></td>
         </tr>
     {% endfor %}
     </table>
