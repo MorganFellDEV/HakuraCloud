@@ -8,8 +8,10 @@ from hakura.forms import NewPostForm
 
 def welcome(request):
     posts = Post.objects.all()
-    post = {'posts': posts}
-    return render(request, "hakura/index.html", post)
+
+    users = User.objects.all()
+
+    return render(request, "hakura/index.html", {'posts': posts, 'users': users})
 
 def createpost(request):
     if request.method == "POST":
@@ -26,8 +28,9 @@ def createpost(request):
 
 def userdetails(request,id):
     user = get_object_or_404(User,pk=id)
+    posts = Post.objects.filter(UserID=id)
     return render(request, "hakura/userprofile.html",
-                  {'user': user})
+                  {'user': user, 'posts': posts})
 
 def allusers(request):
     users = User.objects.all()
