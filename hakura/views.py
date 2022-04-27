@@ -17,6 +17,7 @@ def welcome(request):
 
     return render(request, "hakura/index.html", {'posts': posts, 'users': users})
 
+
 @login_required
 def createpost(request):
     if request.method == "POST":
@@ -32,12 +33,14 @@ def createpost(request):
         form = NewPostForm()
         return render(request, "hakura/createpost.html", {'form': form})
 
+
 @login_required
 def userdetails(request, id):
     user = get_object_or_404(User, pk=id)
     posts = Post.objects.filter(UserID=id)
     return render(request, "hakura/userprofile.html",
                   {'user': user, 'posts': posts})
+
 
 @login_required
 def allusers(request):
