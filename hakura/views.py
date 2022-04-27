@@ -4,16 +4,16 @@ from django.http import HttpResponse
 # Create your views here.
 
 from hakura.models import User, Post
+from hakura.forms import NewPostForm
 
 def welcome(request):
     posts = Post.objects.all()
     post = {'posts': posts}
     return render(request, "hakura/index.html", post)
 
-createpostform = modelform_factory(Post, exclude=[])
 def createpost(request):
     if request.method == "POST":
-        form = createpostform(request.POST)
+        form = NewPostForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(welcome)
@@ -21,7 +21,7 @@ def createpost(request):
             return HttpResponse ("Form not valid.")
         #form submitted, to be processed
     else:
-        form = createpostform()
+        form = NewPostForm()
         return render(request, "hakura/createpost.html", {'form':form})
 
 def userdetails(request,id):
