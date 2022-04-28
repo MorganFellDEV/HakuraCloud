@@ -136,6 +136,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', getenv('APP_SERVICE_URL')]
+
 AUTH_USER_MODEL = 'hakura.User'
 LOGIN_REDIRECT_URL = "/"
 
