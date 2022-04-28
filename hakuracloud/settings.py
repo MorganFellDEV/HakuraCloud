@@ -141,7 +141,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', getenv('APP_SERVICE_URL')]
 AUTH_USER_MODEL = 'hakura.User'
 LOGIN_REDIRECT_URL = "/"
 
-SITE_ID = 1
+SITE_ID = 2
 
 
 AUTHENTICATION_BACKENDS = [
