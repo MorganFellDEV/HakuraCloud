@@ -1,6 +1,7 @@
 # Added by Morgan for Hakura
 hakura/migrations/
 .idea/
+hakuracloud/DigiCertGlobalRootCA.crt.pem
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
