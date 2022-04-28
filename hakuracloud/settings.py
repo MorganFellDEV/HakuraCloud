@@ -88,6 +88,9 @@ DATABASES = {
             'password': getenv("HAKURA_SERVER_PASSWORD"),
             'database': 'hakura',
             'init_command': 'SET default_storage_engine=INNODB',
+            'ssl': {
+                'ca': 'hakuracloud/DigiCertGlobalRootCA.crt.pem'
+            }
         },
     }
 }
