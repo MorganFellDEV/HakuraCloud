@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hakura - All Users</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Users</h1>
+    <table>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Display Name</th>
+    <th>Bio</th>
+    <th></th>
+    {% for user in users %}
+        <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username}}</td>
+        <td>{{ user.UserDisplayName }}</td>
+        <td>{{ user.UserBio }}</td>
+        <td><a href="/profiles/{{ user.id }}">Details</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a href={% url 'createuser' %}>Create User</a>
+</body>
+</html>

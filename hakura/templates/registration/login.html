@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+        <h2>Hakura Cloud - Log In</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Log In</button>
+        </form>
+        <a href={% url 'createuser' %}>Create User</a>
+        <form method="get" action="/microsoft/to-auth-redirect/?next=/">
+            <button type="submit">Login with Microsoft</button>
+        </form>
+    </body>
+</html>

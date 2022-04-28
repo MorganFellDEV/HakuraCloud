@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hakura</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hakura</h1>
+    <p>Welcome to Hakura Cloud.</p>
+    <p>You are currently logged in as: {{ request.user.username}}</p>
+    <a href="/logout">logout</a>
+    <h1>All Posts</h1>
+    <a href={% url 'createpost' %}>Create Post</a>
+    <table>
+    <th>Post ID</th>
+    <th>Post Username</th>
+    <th>Post UserDisplayName</th>
+    <th>Post Content</th>
+    <th></th>
+
+    {% for post in posts %}
+        <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.UserID.username}}</td>
+        <td>{{ post.UserID.UserDisplayName}}</td>
+        <td>{{ post.PostContent }}</td>
+        <td><a href="/profiles/{{ post.UserID.id }}">User Details</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <h1>All Users</h1>
+    <table>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Display Name</th>
+    <th>Bio</th>
+    <th></th>
+    {% for user in users %}
+        <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username}}</td>
+        <td>{{ user.UserDisplayName }}</td>
+        <td>{{ user.UserBio }}</td>
+        <td><a href="/profiles/{{ user.id }}">Details</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hakura - {{ user.UserDisplayName }}</title>
+</head>
+    <body>
+        <h1>User Profile</h1>
+        <p>{{ user.username }}</p>
+        <p>{{ user.UserDisplayName }}</p>
+        <em>{{ user.UserBio }}</em>
+    </body>
+
+    <h1>All Posts by User</h1>
+    <table>
+    <th>Post ID</th>
+    <th>Post Content</th>
+    <th></th>
+    {% for post in posts %}
+        <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.PostContent}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</html>
