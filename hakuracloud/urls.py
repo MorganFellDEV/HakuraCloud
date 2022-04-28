@@ -25,5 +25,6 @@ urlpatterns = [
     path('createuser',createuser, name='createuser'),
     path('createpost',createpost, name='createpost'),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('logout', logoutuser)
+    path('logout', logoutuser),
+    path('microsoft/', include('microsoft_auth.urls', namespace='microsoft')),
 ]

@@ -15,7 +15,7 @@ def welcome(request):
 
     users = User.objects.all()
 
-    return render(request, "hakura/index.html", {'posts': posts, 'users': users})
+    return render(request, "hakura/index.html", {'posts': posts, 'users': users, 'request': request})
 
 
 @login_required
@@ -67,4 +67,4 @@ def createuser(request):
 
 def logoutuser(request):
     logout(request)
-    return redirect('createuser')
+    return redirect(welcome)

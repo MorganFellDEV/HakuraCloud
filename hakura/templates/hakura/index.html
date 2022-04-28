@@ -12,11 +12,11 @@
 </head>
 <body>
     <h1>Hakura</h1>
-    <p> Welcome to Hakura Cloud.</p>
+    <p>Welcome to Hakura Cloud.</p>
+    <p>You are currently logged in as: {{ request.user.username}}</p>
     <a href="/logout">logout</a>
     <h1>All Posts</h1>
     <a href={% url 'createpost' %}>Create Post</a>
-    <a href={% url 'createuser' %}>Create User</a>
     <table>
     <th>Post ID</th>
     <th>Post Username</th>
