@@ -28,7 +28,6 @@ jobs:
           source venv/bin/activate
           wget https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem
           mv BaltimoreCyberTrustRoot.crt.pem DigiCertGlobalRootCA.crt.pem
-          sed -i 's/SITE_ID = 1/SITE_ID = 2/g' settings.py
           
 
       
@@ -44,6 +43,9 @@ jobs:
           path: |
             . 
             !venv/
+
+      - name: Change site ID for dev deployment
+        run: sed -i 's/SITE_ID = 1/SITE_ID = 2/g' settings.py
 
   deploy:
     runs-on: ubuntu-latest
