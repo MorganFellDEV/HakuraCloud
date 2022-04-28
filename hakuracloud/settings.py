@@ -83,9 +83,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hakura',
         'OPTIONS': {
-            'host': getenv("HAKURA_SERVER_URL"),
-            'user': getenv("HAKURA_SERVER_USERNAME"),
-            'password': getenv("HAKURA_SERVER_PASSWORD"),
+            'host': getenv("HAKURA_DB_URL"),
+            'user': getenv("HAKURA_DB_USERNAME"),
+            'password': getenv("HAKURA_DB_PASSWORD"),
             'database': 'hakura',
             'init_command': 'SET default_storage_engine=INNODB',
             'ssl': {
