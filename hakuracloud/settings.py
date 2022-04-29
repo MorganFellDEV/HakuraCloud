@@ -142,7 +142,7 @@ CSRF_TRUSTED_ORIGINS = [str("https://"+getenv('APP_SERVICE_URL')), str("https://
 AUTH_USER_MODEL = 'hakura.User'
 LOGIN_REDIRECT_URL = "/"
 
-SITE_ID = 2
+SITE_ID = getenv('DJANGO_SITE_ID')
 
 
 AUTHENTICATION_BACKENDS = [
