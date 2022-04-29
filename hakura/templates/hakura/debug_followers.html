@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hakura - Debug Followers</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Follows</h1>
+    <table>
+    <th>ID</th>
+    <th>follow.user</th>
+    <th>follow.target</th>
+    {% for follow in follows %}
+        <tr>
+        <td>{{ follow.id }}</td>
+        <td>{{ follow.user}}</td>
+        <td>{{ follow.target }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <h1>Who I am following</h1>
+    <p>as {{ request.user.username }}</p>
+
+    <table>
+    <th>ID</th>
+    <th>follow.user</th>
+    <th>follow.target</th>
+    {% for follow in user_following %}
+        <tr>
+        <td>{{ follow.id }}</td>
+        <td>{{ follow.user}}</td>
+        <td>{{ follow.target }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <h1>Who follows me?</h1>
+    <p>as {{ request.user.username }}</p>
+
+    <table>
+    <th>ID</th>
+    <th>follow.user</th>
+    <th>follow.target</th>
+    {% for follow in user_followers %}
+        <tr>
+        <td>{{ follow.id }}</td>
+        <td>{{ follow.user}}</td>
+        <td>{{ follow.target }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 # Create your views here.
 
-from hakura.models import User, Post
+from hakura.models import User, Post, Follow
 from hakura.forms import NewPostForm, UpdateProfile
 
 @login_required
@@ -83,3 +83,25 @@ def createuser(request):
 def logoutuser(request):
     logout(request)
     return redirect(welcome)
+
+@login_required
+def debug_followers(request):
+    follows = Follow.objects.all()
+    user_following = Follow.objects.filter(user_id=request.user.id)
+    user_followers = Follow.objects.filter(target_id=request.user.id)
+    return render(request, "hakura/debug_followers.html", {'follows': follows, 'user_following': user_following, 'user_followers': user_followers})
+
+@login_required
+def followuser(request, id):
+    if request.method == "POST":
+        currentuser = User.objects.get(pk=request.user.id)
+        targetuser = User.objects.get(pk=id)
+        if (Follow.objects.filter(user=currentuser, target=targetuser)).exists():
+            return HttpResponse("You are already following this user.")
+        else:
+            newfollow = Follow(user=currentuser, target=User.objects.get(pk=id))
+            newfollow.save()
+            return HttpResponse(str("Now following"+targetuser.username))
+    else:
+        return redirect(welcome)
+

@@ -9,6 +9,11 @@
         <p>{{ user.username }}</p>
         <p>{{ user.UserDisplayName }}</p>
         <em>{{ user.UserBio }}</em>
+
+        <form method="post" action="/followuser/{{ user.id }}">
+            {% csrf_token %}
+            <button type="submit">Follow</button>
+        </form>
     </body>
 
     <h1>All Posts by User</h1>
