@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hakura.views import welcome,userdetails,allusers,createuser,createpost,logoutuser
+from hakura.views import welcome,userdetails,allusers,createuser,createpost,logoutuser,updateprofile
 
 urlpatterns = [
     path('',welcome),
@@ -27,4 +27,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('logout', logoutuser),
     path('microsoft/', include('microsoft_auth.urls', namespace='microsoft')),
+    path('updateprofile',updateprofile)
 ]

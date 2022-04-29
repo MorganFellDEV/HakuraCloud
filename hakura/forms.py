@@ -6,3 +6,9 @@ class NewPostForm(ModelForm):
     class Meta:
         model = Post
         exclude = ('UserID',)
+
+
+class UpdateProfile(ModelForm):
+    class Meta:
+        model = User
+        fields = ['UserDisplayName', 'UserBio']

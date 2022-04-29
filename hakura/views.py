@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 # Create your views here.
 
 from hakura.models import User, Post
-from hakura.forms import NewPostForm
+from hakura.forms import NewPostForm, UpdateProfile
 
 @login_required
 def welcome(request):
@@ -33,6 +33,21 @@ def createpost(request):
         form = NewPostForm()
         return render(request, "hakura/createpost.html", {'form': form})
 
+
+@login_required
+def updateprofile(request):
+    if request.method == "POST":
+        usertomodify = User.objects.get(id=request.user.id)
+        form = UpdateProfile(request.POST, instance=usertomodify)
+        if form.is_valid():
+            form.save()
+            return redirect(welcome)
+        else:
+            return HttpResponse("Form not valid.")
+        # form submitted, to be processed
+    else:
+        form = UpdateProfile()
+        return render(request, "hakura/updateprofile.html", {'form': form})
 
 @login_required
 def userdetails(request, id):
