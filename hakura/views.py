@@ -89,19 +89,24 @@ def debug_followers(request):
     follows = Follow.objects.all()
     user_following = Follow.objects.filter(user_id=request.user.id)
     user_followers = Follow.objects.filter(target_id=request.user.id)
-    return render(request, "hakura/debug_followers.html", {'follows': follows, 'user_following': user_following, 'user_followers': user_followers})
+    following_posts = Post.objects.filter(UserID__in=Follow.objects.filter(user=request.user).values_list('target'))
+    return render(request, "hakura/debug_followers.html", {'follows': follows, 'user_following': user_following, 'user_followers': user_followers, 'following_posts': following_posts})
 
 @login_required
 def followuser(request, id):
     if request.method == "POST":
         currentuser = User.objects.get(pk=request.user.id)
         targetuser = User.objects.get(pk=id)
-        if (Follow.objects.filter(user=currentuser, target=targetuser)).exists():
-            return HttpResponse("You are already following this user.")
+        if currentuser == targetuser:
+            return HttpResponse("You cannot follow yourself!")
+
         else:
-            newfollow = Follow(user=currentuser, target=User.objects.get(pk=id))
-            newfollow.save()
-            return HttpResponse(str("Now following"+targetuser.username))
+            if (Follow.objects.filter(user=currentuser, target=targetuser)).exists():
+                return HttpResponse("You are already following this user.")
+            else:
+                newfollow = Follow(user=currentuser, target=User.objects.get(pk=id))
+                newfollow.save()
+                return HttpResponse(str("Now following"+targetuser.username))
     else:
         return redirect(welcome)
 

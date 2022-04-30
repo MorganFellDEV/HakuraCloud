@@ -56,5 +56,21 @@
         </tr>
     {% endfor %}
     </table>
+
+    <h1>Posts by people I follow</h1>
+    <p>as {{ request.user.username }}</p>
+
+    <table>
+    <th>ID</th>
+    <th>follow.user</th>
+    <th>follow.target</th>
+    {% for post in following_posts %}
+        <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.UserID}}</td>
+        <td>{{ post.PostContent }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>
