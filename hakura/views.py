@@ -110,3 +110,21 @@ def followuser(request, id):
     else:
         return redirect(welcome)
 
+@login_required
+def unfollowuser(request, id):
+    if request.method == "POST":
+        currentuser = User.objects.get(pk=request.user.id)
+        targetuser = User.objects.get(pk=id)
+        if currentuser == targetuser:
+            return HttpResponse("You cannot unfollow yourself!")
+
+        else:
+            if (Follow.objects.filter(user=currentuser, target=targetuser)).exists():
+                unfollow_instance = Follow.objects.filter(user=currentuser, target=targetuser)
+                unfollow_instance.delete()
+                return HttpResponse("Unfollowed.")
+                #   REMOVE FOLLOWER
+            else:
+                return HttpResponse("You are not following this user.")
+    else:
+        return redirect(welcome)
